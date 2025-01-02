@@ -9,24 +9,19 @@ contract BruteForceSort {
     uint[] data4 = [12, 33, 94, 60, 74, 29, 32, 88, 81, 45, 87, 40, 86, 34, 98, 73, 26, 37, 54, 89, 68, 8, 94, 99];
     uint[] data5 = [38, 66, 90, 47, 76, 5, 25, 82, 21, 7, 79, 44, 40, 65, 63, 54, 36, 17, 61, 6, 84, 35, 42, 72, 62, 15, 23, 89, 18, 39, 68, 95, 74, 70, 45, 49, 26, 69, 97, 32];
 
-    // Fungsi untuk mengurutkan data menggunakan Brute Force
-    function bruteForceSort(uint option) public returns (uint[] memory) {
-        uint[] memory dataToSort;
-
-        // Pilih array yang akan diurutkan berdasarkan parameter option
-        if (option == 1) dataToSort = data1;
-        else if (option == 2) dataToSort = data2;
-        else if (option == 3) dataToSort = data3;
-        else if (option == 4) dataToSort = data4;
-        else if (option == 5) dataToSort = data5;
+    // Fungsi untuk mengurutkan data langsung di storage
+    function bruteForceSort(uint option) public {
+        // Pilih array di penyimpanan berdasarkan parameter option
+        if (option == 1) bruteForceSortStorage(data1);
+        else if (option == 2) bruteForceSortStorage(data2);
+        else if (option == 3) bruteForceSortStorage(data3);
+        else if (option == 4) bruteForceSortStorage(data4);
+        else if (option == 5) bruteForceSortStorage(data5);
         else revert("Invalid option. Use a value between 1 and 5.");
-
-        // Panggil fungsi untuk mengurutkan
-        return bruteForceSortHelper(dataToSort);
     }
 
-    // Fungsi untuk mengurutkan menggunakan metode brute force
-    function bruteForceSortHelper(uint[] memory array) internal pure returns (uint[] memory) {
+    // Fungsi untuk mengurutkan langsung di storage
+    function bruteForceSortStorage(uint[] storage array) internal {
         uint n = array.length;
 
         // Menggunakan dua loop untuk membandingkan setiap elemen
@@ -38,7 +33,5 @@ contract BruteForceSort {
                 }
             }
         }
-
-        return array;
     }
 }
